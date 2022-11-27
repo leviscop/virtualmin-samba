@@ -22,7 +22,7 @@ done
 for USER in $USERS; do
         if [ ! -f "$SMB_CONF_DIR_USERS/$USER.conf" ]; then
                 smbpasswd -a $USER -n
-                echo -e "[$USER]\n\twritable = yes\n\tpath = /home/$USER\n\tvalid users = $USER" > $SMB_CONF_DIR_USERS/$USER.conf
+                echo -e "[$USER]\n\twriteable = yes\n\tpath = /home/$USER\n\tvalid users = $USER" > $SMB_CONF_DIR_USERS/$USER.conf
         fi
         DOMAINS="$(/usr/sbin/virtualmin list-domains --user $USER --subserver --name-only)"
         for DOMAIN in $DOMAINS; do
@@ -38,7 +38,7 @@ for USER in $USERS; do
                 for SUBUSER in $SUBUSERS; do
                         if [ ! -f "$SMB_CONF_DIR_SUBUSERS/$SUBUSER.conf" ]; then
                                 smbpasswd -a $SUBUSER -n
-                                echo -e "[$SUBUSER]\n\twritable = yes\n\tpath = /home/$USER/domains/$DOMAIN\n\tvalid users = $SUBUSER" > $SMB_CONF_DIR_SUBUSERS/$SUBUSER.conf
+                                echo -e "[$SUBUSER]\n\twriteable = yes\n\tpath = /home/$USER/domains/$DOMAIN\n\tvalid users = $SUBUSER" > $SMB_CONF_DIR_SUBUSERS/$SUBUSER.conf
                         fi
                 done
         done
