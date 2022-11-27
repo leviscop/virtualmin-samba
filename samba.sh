@@ -48,5 +48,5 @@ if ! grep -q 'include = '"${SMB_INCLUDES}" $SMB_CONF ; then
    echo 'include = '"${SMB_INCLUDES}" | tee -a $SMB_CONF > /dev/null
 fi
 
-ls "${SMB_CONF_DIR_USERS}"* | sed -e 's/^/include = /' > $SMB_INCLUDES
-ls "${SMB_CONF_DIR_SUBUSERS}"* | sed -e 's/^/include = /' >> $SMB_INCLUDES
+ls "${SMB_CONF_DIR_USERS}"/* | sed -e 's/^/include = /' > $SMB_INCLUDES
+ls "${SMB_CONF_DIR_SUBUSERS}"/* | sed -e 's/^/include = /' >> $SMB_INCLUDES
